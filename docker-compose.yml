@@ -1,0 +1,15 @@
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.13.4
+    restart: unless-stopped
+    ports:
+      - 16333:6333
+    volumes:
+      - ./.docker/data/qdrant:/qdrant/storage:z
+    networks:
+      - langchain
+
+networks:
+  langchain:
+    external: true
+    name: langchain

@@ -12,3 +12,6 @@ wheels/
 .env
 
 **/*.history.json
+
+.docker/data/*
+!.docker/data/.gitkeep
