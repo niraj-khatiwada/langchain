@@ -8,5 +8,6 @@ dependencies = [
     "langchain>=0.1.20",
     "langchain-community>=0.0.38",
     "langchain-openai>=0.1.7",
+    "numpy>=1.26.4",
     "python-dotenv>=1.0.1",
 ]
