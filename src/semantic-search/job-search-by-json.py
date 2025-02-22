@@ -19,40 +19,36 @@ if __name__ == "__main__":
 
     vector_db = QdrantClient(url=VECTOR_DB_URL)
 
-    def load_jobs():
-        def job_metadata_func(match: dict, metadata: dict):
-            metadata["id"] = match.get("id")
-            return metadata
-
-        jobs_json = JSONLoader(
-            file_path="docs/jobs.json",
-            text_content=False,
-            jq_schema=".jobs[]",
-            content_key="{title, company, location}",
-            metadata_func=job_metadata_func,
-            is_content_key_jq_parsable=True,
-        ).load()
-
-        store = QdrantVectorStore.from_documents(
-            documents=jobs_json,
-            embedding=embedding,
-            collection_name="job",
-            url=VECTOR_DB_URL,
-        )
-        return store
-
     collection_exists = vector_db.collection_exists("job")
     if not collection_exists:
         vector_db.create_collection(
             collection_name="job",
             vectors_config=VectorParams(size=768, distance=Distance.COSINE),
         )
-        store = load_jobs()
 
     if collection_exists:
         yn = input("Do you want to add jobs data to vector db? (y/n)")
         if yn.strip() == "y":
-            store = load_jobs()
+
+            def job_metadata_func(match: dict, metadata: dict):
+                metadata["id"] = match.get("id")
+                return metadata
+
+            jobs_json = JSONLoader(
+                file_path="docs/jobs.json",
+                text_content=False,
+                jq_schema=".jobs[]",
+                content_key="{title, company, location}",
+                metadata_func=job_metadata_func,
+                is_content_key_jq_parsable=True,
+            ).load()
+
+            store = QdrantVectorStore.from_documents(
+                documents=jobs_json,
+                embedding=embedding,
+                collection_name="job",
+                url=VECTOR_DB_URL,
+            )
         else:
             store = QdrantVectorStore.from_existing_collection(
                 embedding=embedding,
@@ -62,7 +58,5 @@ if __name__ == "__main__":
 
     search = input("What/Where are you searching your job?\n")
     vec = embedding.embed_query(text=search)
-    jobs = store.similarity_search_by_vector(vec)
-    print(f"{len(jobs)} jobs found")
-    for job in jobs:
-        print(f"id={job.metadata.get('id')} {str(job.page_content)}")
+    res = store.similarity_search_by_vector(vec)
+    print(res)

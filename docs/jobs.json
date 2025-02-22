@@ -1,0 +1,164 @@
+{
+  "jobs": [
+    {
+      "id": 1,
+      "title": "Software Engineer",
+      "company": "TechCorp",
+      "location": "New York, USA",
+      "salary": "120000",
+      "type": "Full-time"
+    },
+    {
+      "id": 2,
+      "title": "Data Scientist",
+      "company": "DataWorks",
+      "location": "San Francisco, USA",
+      "salary": "130000",
+      "type": "Full-time"
+    },
+    {
+      "id": 3,
+      "title": "Product Manager",
+      "company": "Innovate Inc.",
+      "location": "Austin, USA",
+      "salary": "115000",
+      "type": "Full-time"
+    },
+    {
+      "id": 4,
+      "title": "UI/UX Designer",
+      "company": "CreativeHub",
+      "location": "Toronto, Canada",
+      "salary": "95000",
+      "type": "Full-time"
+    },
+    {
+      "id": 5,
+      "title": "DevOps Engineer",
+      "company": "CloudTech",
+      "location": "Seattle, USA",
+      "salary": "125000",
+      "type": "Full-time"
+    },
+    {
+      "id": 6,
+      "title": "Cybersecurity Analyst",
+      "company": "SecureIT",
+      "location": "Washington, USA",
+      "salary": "110000",
+      "type": "Full-time"
+    },
+    {
+      "id": 7,
+      "title": "Backend Developer",
+      "company": "CodeCrafters",
+      "location": "Berlin, Germany",
+      "salary": "100000",
+      "type": "Full-time"
+    },
+    {
+      "id": 8,
+      "title": "Frontend Developer",
+      "company": "Pixel Perfect",
+      "location": "London, UK",
+      "salary": "105000",
+      "type": "Full-time"
+    },
+    {
+      "id": 9,
+      "title": "AI Researcher",
+      "company": "DeepAI",
+      "location": "Boston, USA",
+      "salary": "140000",
+      "type": "Full-time"
+    },
+    {
+      "id": 10,
+      "title": "Cloud Architect",
+      "company": "CloudMasters",
+      "location": "Sydney, Australia",
+      "salary": "135000",
+      "type": "Full-time"
+    },
+    {
+      "id": 11,
+      "title": "IT Support Specialist",
+      "company": "TechSupport Co.",
+      "location": "Mumbai, India",
+      "salary": "75000",
+      "type": "Full-time"
+    },
+    {
+      "id": 12,
+      "title": "System Administrator",
+      "company": "SysOps Solutions",
+      "location": "Dublin, Ireland",
+      "salary": "95000",
+      "type": "Full-time"
+    },
+    {
+      "id": 13,
+      "title": "Marketing Manager",
+      "company": "BrandBoost",
+      "location": "Los Angeles, USA",
+      "salary": "110000",
+      "type": "Full-time"
+    },
+    {
+      "id": 14,
+      "title": "Blockchain Developer",
+      "company": "CryptoLabs",
+      "location": "Zurich, Switzerland",
+      "salary": "145000",
+      "type": "Full-time"
+    },
+    {
+      "id": 15,
+      "title": "Embedded Systems Engineer",
+      "company": "MicroTech",
+      "location": "Tokyo, Japan",
+      "salary": "125000",
+      "type": "Full-time"
+    },
+    {
+      "id": 16,
+      "title": "Machine Learning Engineer",
+      "company": "AI Innovations",
+      "location": "Singapore",
+      "salary": "130000",
+      "type": "Full-time"
+    },
+    {
+      "id": 17,
+      "title": "QA Engineer",
+      "company": "BugSquashers",
+      "location": "Amsterdam, Netherlands",
+      "salary": "95000",
+      "type": "Full-time"
+    },
+    {
+      "id": 18,
+      "title": "Game Developer",
+      "company": "GameVerse",
+      "location": "Montreal, Canada",
+      "salary": "110000",
+      "type": "Full-time"
+    },
+    {
+      "id": 19,
+      "title": "Technical Writer",
+      "company": "DocsFirst",
+      "location": "Stockholm, Sweden",
+      "salary": "85000",
+      "type": "Full-time"
+    },
+    {
+      "id": 20,
+      "title": "Network Engineer",
+      "company": "NetSolutions",
+      "location": "Dubai, UAE",
+      "salary": "120000",
+      "type": "Full-time"
+    }
+  ]
+}
