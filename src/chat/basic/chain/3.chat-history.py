@@ -12,7 +12,10 @@ load_dotenv(override=True)
 
 AI_SERVER_URL = os.getenv("AI_SERVER_URL")
 
-chat = ChatOpenAI(base_url=AI_SERVER_URL)
+chat = ChatOpenAI(
+    base_url=AI_SERVER_URL,
+    api_key=".",
+)
 
 question_template = ChatPromptTemplate.from_messages(
     messages=[
@@ -50,7 +53,7 @@ history = FileChatMessageHistory(
 chain_with_history = RunnableWithMessageHistory(
     runnable=chain,
     get_session_history=lambda _: history,
-    input_messages_key=["question"],
+    input_messages_key="question",
     history_messages_key="chat_history",
 )
 

@@ -6,14 +6,9 @@ from qdrant_client.models import Distance, VectorParams
 from langchain_community.document_loaders import JSONLoader
 from langchain_qdrant import QdrantVectorStore
 from langchain.chains.retrieval import create_retrieval_chain
-from langchain.chains.history_aware_retriever import create_history_aware_retriever
 from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain.prompts.chat import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.runnables.history import RunnableWithMessageHistory
-from langchain_community.chat_message_histories.file import FileChatMessageHistory
-from langchain.globals import set_debug
+from langchain.prompts.chat import ChatPromptTemplate
 
-set_debug(True)
 
 load_dotenv(override=True)
 
@@ -80,56 +75,26 @@ if __name__ == "__main__":
             (
                 "system",
                 """You're an assistant that is designed to answer questions for the given context only. 
-                If certain data from the context is not relevant with the question asked, filter them out and exclude them in the response.
                 Here's the context:
                 {context}""",  # The key {context} is used internally so should be present as exact key indicating the document context
             ),
             (
-                "system",
-                "Now, here's the history of the messages for this chat:",
-            ),
-            MessagesPlaceholder(variable_name="chat_history"),
-            (
                 "human",
-                "The question is: {input}",
+                "The question is: {input}",  # The key {input} is used internally so should be present as exact key indicating the user question
             ),
         ]
     )
-    history_aware_retriever = create_history_aware_retriever(
-        llm=llm,
-        retriever=store.as_retriever(),
-        prompt=prompt_template,
-    )
+    retriever = store.as_retriever()
     qa_chain = create_stuff_documents_chain(
         llm=llm,
         prompt=prompt_template,
     )
     rag_chain = create_retrieval_chain(
-        retriever=history_aware_retriever,
+        retriever=retriever,
         combine_docs_chain=qa_chain,
-    )
-
-    chat_history = FileChatMessageHistory(
-        file_path=os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), "job-chat.history.json"
-        )
-    )
-    chain_with_history = RunnableWithMessageHistory(
-        runnable=rag_chain,
-        get_session_history=lambda _: chat_history,
-        input_messages_key="input",
-        history_messages_key="chat_history",
     )
 
     while True:
         question = input("Ask anything?\n")
-        res = chain_with_history.invoke(
-            input={
-                "input": question,
-                "context": "",
-            },  # Pass this 'context' value manually as empty to mitigate context not found error.
-            config={"configurable": {"session_id": "1"}},
-        )
-        chat_history.add_user_message(question)
-        chat_history.add_ai_message(str(res["answer"]))
+        res = rag_chain.invoke({"input": question})
         print(res)
