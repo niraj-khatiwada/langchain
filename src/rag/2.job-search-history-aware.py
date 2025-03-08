@@ -91,7 +91,7 @@ if __name__ == "__main__":
             MessagesPlaceholder(variable_name="chat_history"),
             (
                 "human",
-                "The question is: {input}",
+                "{input}",
             ),
         ]
     )

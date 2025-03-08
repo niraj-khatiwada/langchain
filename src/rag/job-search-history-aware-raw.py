@@ -1,3 +1,4 @@
+# Raw version, without use of Langchain confusing retrieval chains
 import os
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from dotenv import load_dotenv
@@ -29,16 +30,16 @@ if __name__ == "__main__":
         messages=[
             (
                 "system",
-                """You're an assistant that is designed to answer questions regarding jobs only. 
-                If certain data from the given jobs context is not relevant with the asked question, filter them out and exclude them in the final response.
-                Here's the list of jobs: {context}.
+                """You're an assistant that is designed to answer questions for the given context only. 
+                If certain data from the context is not relevant with the question asked, filter them out and exclude them in the response.
+                Here's the context: {context}.
                 -------------------------------------------------
                 Always return the value in plain text with no formatting.
                 """,  # The key {context} is used internally so should be present as exact key indicating the document context
             ),
             (
                 "system",
-                "Now, here's the history of the previous messages of this chat:",
+                "Now, here's the history of the messages for this chat:",
             ),
             MessagesPlaceholder(variable_name="chat_history"),
             (
