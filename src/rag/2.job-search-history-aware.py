@@ -60,7 +60,10 @@ if __name__ == "__main__":
     if not collection_exists:
         vector_db.create_collection(
             collection_name="job",
-            vectors_config=VectorParams(size=768, distance=Distance.COSINE),
+            vectors_config=VectorParams(
+                size=1024,
+                distance=Distance.COSINE,
+            ),
         )
         store = load_jobs()
 

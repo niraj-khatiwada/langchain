@@ -15,13 +15,13 @@ if __name__ == "__main__":
     VECTOR_DB_URL = os.getenv("VECTOR_DB_URL")
 
     llm = ChatOpenAI(
-        base_url=AI_SERVER_URL,
+        # base_url=AI_SERVER_URL,
         api_key=".",
     )
 
     embedding = OpenAIEmbeddings(
-        base_url=AI_SERVER_URL,
-        check_embedding_ctx_length=False,  # Important
+        # base_url=AI_SERVER_URL,
+        # check_embedding_ctx_length=False,  # Important
         api_key=".",
     )
 
